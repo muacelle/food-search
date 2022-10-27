@@ -1,13 +1,25 @@
-import { useContext } from 'react'
-import { AppContext } from '../../context'
+import { useGlobalContext } from '../../context'
 
 const Meals = () => {
 
-    const context = useContext(AppContext)
-    console.log(context)
+    const {meals} = useGlobalContext()
 
     return (
-        <h1>Meals</h1>
+        <section className='section-center'>
+            {meals.map((meal) => {
+                const { idMeal, strMeal: title, strMealThumb: image } = meal
+
+                return (
+                    <article key={idMeal} className='single-meal'>
+                        <img src={image} className='img'/>
+                        <footer>
+                            <h5>{title}</h5>
+                            <button className='like-btn'>like</button>
+                        </footer>
+                    </article>
+                )
+            })}
+        </section>
     )
 }
 
