@@ -1,8 +1,25 @@
 import { useGlobalContext } from '../../context'
+import { MdOutlineThumbUpAlt } from 'react-icons/md'
 
 const Meals = () => {
 
-    const {meals} = useGlobalContext()
+    const { meals, loading } = useGlobalContext()
+
+    if (loading) {
+        return (
+        <section className='section'>
+            <h4>Loading...</h4>
+        </section>
+        )
+    }
+
+    if (meals.length < 1) {
+        return (
+            <section className='section'>
+                <h4>No results for your search term.</h4>
+            </section>
+        )
+    }
 
     return (
         <section className='section-center'>
@@ -14,7 +31,7 @@ const Meals = () => {
                         <img src={image} className='img'/>
                         <footer>
                             <h5>{title}</h5>
-                            <button className='like-btn'>like</button>
+                            <button className='like-btn'><MdOutlineThumbUpAlt /></button>
                         </footer>
                     </article>
                 )
