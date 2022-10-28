@@ -3,7 +3,7 @@ import { MdOutlineThumbUpAlt } from 'react-icons/md'
 
 const Meals = () => {
 
-    const { meals, loading, selectMeal } = useGlobalContext()
+    const { meals, loading, selectMeal, addToFavorites } = useGlobalContext()
 
     if (loading) {
         return (
@@ -31,7 +31,7 @@ const Meals = () => {
                         <img src={image} className='img' onClick={() => selectMeal(idMeal)}/>
                         <footer>
                             <h5>{title}</h5>
-                            <button className='like-btn'><MdOutlineThumbUpAlt /></button>
+                            <button className='like-btn' onClick={() => addToFavorites(idMeal)}><MdOutlineThumbUpAlt /></button>
                         </footer>
                     </article>
                 )
